@@ -10,38 +10,30 @@ QuickAsk is **not** a substitute for professional medical care. Always consult a
 
 ```bash
 npm install
-```
-
-### Enable real AI answers (recommended)
-
-1. Copy the example env file:
-
-```bash
 cp .env.example .env
 ```
 
-2. Add **one** API key:
+Add one key to `.env`:
 
-- **Groq** (free tier): get a key at [console.groq.com](https://console.groq.com/) and set `GROQ_API_KEY=...`
-- **OpenAI**: set `OPENAI_API_KEY=...`
+- `GROQ_API_KEY=...` (free: [console.groq.com](https://console.groq.com/))
+- or `OPENAI_API_KEY=...`
 
-3. Restart the dev server.
+Restart `npm run dev`. Header shows **AI answers on** when a key is loaded.
 
-Without a key, QuickAsk still works using built-in demo answers. The header shows **AI answers on** when a key is loaded, or **Demo answers** otherwise.
+## Deploy on Vercel
 
-## Run locally
+Local `.env` is **not** used on Vercel. You must add the key in the dashboard:
+
+1. Vercel → your project → **Settings → Environment Variables**
+2. Add `GROQ_API_KEY` (or `OPENAI_API_KEY`) for Production + Preview
+3. **Redeploy**
+
+After that, production should show **AI answers on** instead of **Demo answers**.
+
+## Scripts
 
 ```bash
 npm run dev
-```
-
-Open the URL shown in the terminal (usually `http://localhost:5173`).
-
-## Build
-
-```bash
 npm run build
 npm run preview
 ```
-
-`vite preview` also serves the `/api/ask` route so AI keeps working after build.
